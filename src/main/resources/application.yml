@@ -1,0 +1,28 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    driverClassName: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://localhost:3306/vote?useTimezone=true&serverTimezone=UTC
+    username: vote
+    password: vote
+    testWhileIdle: true
+    validationQuery: SELECT 1
+  jpa:
+    ddl-auto: update
+    hibernate:
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyComponentPathImpl
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MariaDB103Dialect
+        show_sql: true
+  sql:
+    init:
+      platform: mariadb
+  kafka:
+    consumer:
+      bootstrap-servers: 127.0.0.1:9093
+      auto-offset-reset: earliest
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
